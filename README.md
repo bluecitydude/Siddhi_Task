@@ -4,17 +4,16 @@ This project contains a PHP-based student API deployed on Render, using MySQL ho
 
 ## Features
 - Fetch API endpoint
-- Cloud MySQL integration
-- Render-friendly structure (no Docker)
-- Composer + Nixpacks PHP runtime
+- Render-friendly structure
 
 ## Files
-- public/index.php
+- index.php
 - src/db.php
 - src/fetch.php
 - composer.json
-- render.yaml
+- Dockerfile
 
 ## Deployment
 - Backend: Render
-- Database: Railway MySQL
+- Database:MySQL
+
