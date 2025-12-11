@@ -1,8 +1,0 @@
-services:
-  - type: web
-    runtime: php
-    name: fetch-api-task-tejendra
-    buildCommand: composer install
-    startCommand: php -S 0.0.0.0:$PORT -t public
-    envVars:
-      PORT: 10000
