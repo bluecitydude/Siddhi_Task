@@ -1,15 +1,17 @@
 #!/bin/bash
 
-service mysql start
+# Start MySQL server manually (this works in Docker)
+mysqld --user=mysql &
 
-# Wait for MySQL to start
-sleep 5
+# Wait for MySQL to fully start
+sleep 10
 
-# Check if DB exists
+# Check if database exists
 DB_EXISTS=$(mysql -u root -e "SHOW DATABASES LIKE 'siddhi_tasks';" | grep siddhi_tasks)
 
 if [ -z "$DB_EXISTS" ]; then
     echo "Initializing database..."
+
     mysql -u root -e "CREATE DATABASE siddhi_tasks;"
 
     mysql -u root siddhi_tasks -e "
@@ -29,9 +31,10 @@ if [ -z "$DB_EXISTS" ]; then
         ALTER TABLE students ADD PRIMARY KEY (id);
         ALTER TABLE students MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
     "
+
 else
-    echo "Database already exists, skipping initialization."
+    echo "Database already exists. Skipping initialization."
 fi
 
-echo "Starting Apache..."
+echo "Starting Apache server..."
 apache2-foreground
