@@ -1,13 +1,17 @@
 <?php
 
-$host = "127.0.0.1";   // MySQL inside the same container
-$user = "root";
-$pass = "";            // default MySQL root password inside container
-$name = "siddhi_tasks";
-$port = 3306;
+$host = getenv("PGHOST");
+$port = getenv("PGPORT");
+$dbname = getenv("PGDATABASE");
+$user = getenv("PGUSER");
+$pass = getenv("PGPASSWORD");
 
-$conn = mysqli_connect($host, $user, $pass, $name, $port);
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
 
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
+try {
+    $conn = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
 }
