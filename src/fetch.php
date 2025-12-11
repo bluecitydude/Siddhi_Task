@@ -6,21 +6,18 @@
     if($method=='GET'){
         if(isset($_GET['id'])){
             $id=$_GET['id'];
+            // This SQL works for both MySQL and PostgreSQL
             $sql="SELECT * FROM students WHERE id=$id";
-            $result=$conn->query($sql);
-            $data=$result->fetch_assoc();
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             echo json_encode($data);
+
         } else {
             $sql="SELECT * FROM students";
-            $result=$conn->query($sql);
-            $data=array();
-            while($row=$result->fetch_assoc()){
-                $data[]=$row;
-            }
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($data);
         }
     }    
-
-
-
 ?>
