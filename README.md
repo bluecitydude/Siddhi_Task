@@ -15,5 +15,6 @@ This project contains a PHP-based student API deployed on Render, using MySQL ho
 
 ## Deployment
 - Backend: Render
-- Database:MySQL
+- Database:PostgreSQL
+
 
