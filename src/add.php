@@ -7,11 +7,10 @@
         // Data is taken directly from $_POST and bound securely later
         $name = $_POST['name'];
         $class = $_POST['class'];
-        $login_time = $_POST['login_time'];
         $device = $_POST['device'];
 
         // Use placeholders (?) instead of inserting variables directly into the SQL string
-        $sql = "INSERT INTO students (name, class, login_time, device) VALUES ($name, $class, $login_time, $device)";
+        $sql = "INSERT INTO students (name, class, login_time, device) VALUES ($name, $class, $device)";
         
         try {
             // Prepare the statement
@@ -19,7 +18,7 @@
             
             // Bind parameters and execute
             // The types are inferred, but you can explicitly define them if needed
-            $stmt->execute([$name, $class, $login_time, $device]);
+            $stmt->execute([$name, $class, $device]);
 
             echo "New record created successfully";
 
@@ -35,4 +34,5 @@
         echo "Invalid request method.";
     }
 ?>
+
 
