@@ -10,15 +10,16 @@
         $device = $_POST['device'];
 
         // Use placeholders (?) instead of inserting variables directly into the SQL string
-        $sql = "INSERT INTO students (name, class, device) VALUES ('$name', '$class', '$device')";
-        
+       $sql = "INSERT INTO students (name, class, device) VALUES (:name, :class, :device)";
+
         try {
             // Prepare the statement
-            $stmt = $conn->prepare($sql);
-            
-            // Bind parameters and execute
-            // The types are inferred, but you can explicitly define them if needed
-            $stmt->execute([$name, $class, $device]);
+               $stmt = $conn->prepare($sql);
+                $stmt->execute([
+                    ':name' => $name,
+                    ':class' => $class,
+                    ':device' => $device
+                ]);
 
             echo "New record created successfully";
 
@@ -34,6 +35,7 @@
         echo "Invalid request method.";
     }
 ?>
+
 
 
 
