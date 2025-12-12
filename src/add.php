@@ -11,7 +11,7 @@
         $device = $_POST['device'];
 
         // Use placeholders (?) instead of inserting variables directly into the SQL string
-        $sql = "INSERT INTO students (name, class, login_time, device) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO students (name, class, login_time, device) VALUES ($name, $class, $login_time, $device)";
         
         try {
             // Prepare the statement
@@ -35,3 +35,4 @@
         echo "Invalid request method.";
     }
 ?>
+
