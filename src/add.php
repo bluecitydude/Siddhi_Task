@@ -10,7 +10,7 @@
         $device = $_POST['device'];
 
         // Use placeholders (?) instead of inserting variables directly into the SQL string
-        $sql = "INSERT INTO students (name, class, device) VALUES ($name, $class, $device)";
+        $sql = "INSERT INTO students (name, class, device) VALUES ('$name', '$class', '$device')";
         
         try {
             // Prepare the statement
@@ -34,6 +34,7 @@
         echo "Invalid request method.";
     }
 ?>
+
 
 
 
